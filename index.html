@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniversário da Mamãe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+        }
+        .gift-box {
+            position: relative;
+            width: 20vw;
+            height: 20vw;
+            max-width: 200px;
+            max-height: 200px;
+            background: #f1c40f;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+        .gift-box:before, .gift-box:after {
+            content: '';
+            position: absolute;
+            background: #e74c3c;
+        }
+        .gift-box:before {
+            width: 100%;
+            height: 10%;
+        }
+        .gift-box:after {
+            width: 10%;
+            height: 100%;
+        }
+        .ribbon {
+            position: absolute;
+            width: 25%;
+            height: 25%;
+            background: #e74c3c;
+            transform: rotate(45deg);
+            top: -12.5%;
+            border-radius: 5px;
+        }
+        .present {
+            display: none;
+            text-align: center;
+            color: #fff;
+            animation: fadeIn 1s ease forwards;
+            padding: 10px;
+            max-width: 90%;
+        }
+        .present img {
+            max-width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: scaleUp 0.5s ease forwards;
+        }
+        .present h1 {
+            margin: 15px 0 0;
+            font-size: 6vw;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+        .present p {
+            font-size: 4vw;
+            margin-top: 10px;
+            font-style: italic;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes scaleUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="gift-box" id="giftBox">
+        <div class="ribbon"></div>
+    </div>
+    <div class="present" id="present">
+        <img src="body.png" alt="Body Splash We Pink" style="width: 300px; height: 300px; border: 3px solid rgb(233, 80, 105); box-shadow: 5px 5px 10px rgb(233, 80, 105);">
+        <h1>Feliz Aniversário, Mamãe! 🎉</h1>
+        <p>Seu presente: Body Splash da We Pink</p>
+    </div>
+
+    <audio id="drumRoll" preload="auto">
+        <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mpeg">
+        Seu navegador não suporta a reprodução de áudio.
+    </audio>
+
+    <script>
+        const giftBox = document.getElementById('giftBox');
+        const present = document.getElementById('present');
+        const drumRoll = document.getElementById('drumRoll');
+
+        giftBox.addEventListener('click', () => {
+            drumRoll.currentTime = 0; // Reinicia o áudio
+            drumRoll.play().catch(error => console.error("Erro ao reproduzir o som:", error));
+            giftBox.style.transform = 'scale(0.5)';
+            giftBox.style.opacity = '0';
+            setTimeout(() => {
+                giftBox.style.display = 'none';
+                present.style.display = 'block';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
